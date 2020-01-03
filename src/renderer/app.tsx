@@ -9,6 +9,7 @@ import store from './store';
 // Create main element
 const mainElement = document.createElement('div');
 document.body.appendChild(mainElement);
+console.log(process);
 
 // Render components
 const render = (Component: () => JSX.Element) => {
