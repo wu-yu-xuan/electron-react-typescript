@@ -8,7 +8,7 @@ const baseConfig = require('./webpack.base.config');
 
 module.exports = merge.smart(baseConfig, {
   target: 'electron-renderer',
-  entry: './src/renderer/app.tsx',
+  entry: './src/renderer/index.tsx',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[hash:8].js'

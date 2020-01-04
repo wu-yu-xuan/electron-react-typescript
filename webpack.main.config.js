@@ -7,7 +7,11 @@ const baseConfig = require('./webpack.base.config');
 
 module.exports = merge.smart(baseConfig, {
   target: 'electron-main',
-  entry: './src/main/main.ts',
+  entry: './src/main/index.ts',
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'index.js'
+  },
   module: {
     rules: [
       {
@@ -21,7 +25,9 @@ module.exports = merge.smart(baseConfig, {
             ['@babel/preset-env', { targets: 'maintained node versions' }],
             '@babel/preset-typescript'
           ],
-          plugins: [['@babel/plugin-proposal-class-properties', { loose: true }]]
+          plugins: [
+            ['@babel/plugin-proposal-class-properties', { loose: true }]
+          ]
         }
       }
     ]
@@ -31,7 +37,9 @@ module.exports = merge.smart(baseConfig, {
       reportFiles: ['src/main/**/*']
     }),
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
+      'process.env.NODE_ENV': JSON.stringify(
+        process.env.NODE_ENV || 'development'
+      )
     })
   ]
 });
