@@ -1,17 +1,16 @@
 import { app, BrowserWindow } from 'electron';
 import * as path from 'path';
 import * as url from 'url';
+import electronDevtoolsInstaller, {
+  REACT_DEVELOPER_TOOLS
+} from 'electron-devtools-installer';
 
 let win: BrowserWindow | null;
 
 const installExtensions = async () => {
-  const installer = require('electron-devtools-installer');
-  const forceDownload = !!process.env.UPGRADE_EXTENSIONS;
-  const extensions = ['REACT_DEVELOPER_TOOLS', 'REDUX_DEVTOOLS'];
-
-  return Promise.all(
-    extensions.map(name => installer.default(installer[name], forceDownload))
-  ).catch(console.log);
+  return electronDevtoolsInstaller(REACT_DEVELOPER_TOOLS)
+    .then(name => console.log(`${name} has installed`))
+    .catch(err => console.log('intall extension error: ',err));
 };
 
 const createWindow = async () => {
