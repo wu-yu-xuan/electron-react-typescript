@@ -27,7 +27,6 @@
   },
   "lint-staged": {
     "{src,test,mocks}/**/*.{js,ts,tsx,json,css,scss,md}": [
-      "prettier --config ./.prettierrc --write",
       "git add"
     ],
     "{src,test,mocks}/**/*.{js,ts,tsx}": [
@@ -78,10 +77,10 @@
     "url": "git+ssh://git@github.com:Robinfr/electron-react-typescript.git"
   },
   "author": {
-    "name": "Your name",
-    "email": "Your email"
+    "name": "wu-yu-xuan",
+    "email": "mscorlib929003281@gmail.com"
   },
-  "license": "SEE LICENSE",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/Robinfr/electron-react-typescript/issues"
   },
@@ -140,5 +139,9 @@
     "react-dom": "^16.8.6",
     "react-redux": "^7.0.3",
     "redux": "^4.0.1"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "tabWidth": 2
   }
 }
