@@ -10,7 +10,7 @@ let win: BrowserWindow | null;
 const installExtensions = async () => {
   return electronDevtoolsInstaller(REACT_DEVELOPER_TOOLS)
     .then(name => console.log(`${name} has installed`))
-    .catch(err => console.log('intall extension error: ',err));
+    .catch(err => console.log('intall extension error: ', err));
 };
 
 const createWindow = async () => {
