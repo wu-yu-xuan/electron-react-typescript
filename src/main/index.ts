@@ -1,6 +1,6 @@
 import { app, BrowserWindow } from 'electron';
 import * as url from 'url';
-import paths from '../../scripts/paths';
+import { resolve } from 'path';
 import electronDevtoolsInstaller, {
   REACT_DEVELOPER_TOOLS
 } from 'electron-devtools-installer';
@@ -26,7 +26,7 @@ const createWindow = async () => {
   } else {
     win.loadURL(
       url.format({
-        pathname: paths.appHtml,
+        pathname: resolve(__dirname, 'index.html'),
         protocol: 'file:',
         slashes: true
       })

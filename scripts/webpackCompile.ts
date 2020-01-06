@@ -1,7 +1,9 @@
 import webpack, { Configuration } from 'webpack';
 import formatWebpackMessages from 'react-dev-utils/formatWebpackMessages';
 
-export default function webpackCompile(config: Configuration) {
+export default function webpackCompile(
+  config: Configuration
+): Promise<webpack.Stats> {
   const compiler = webpack(config);
   return new Promise((resolve, reject) => {
     compiler.run((err, stats) => {

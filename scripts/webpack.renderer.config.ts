@@ -2,15 +2,14 @@ import webpack from 'webpack';
 import merge from 'webpack-merge';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
-import path from 'path';
-
 import baseConfig from './webpack.base.config';
+import paths from './paths';
 
 export default merge(baseConfig, {
   target: 'electron-renderer',
   entry: './src/renderer/index.tsx',
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: paths.output,
     filename: '[hash:8].js'
   },
   module: {

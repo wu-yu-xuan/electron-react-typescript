@@ -22,7 +22,7 @@ async function start() {
       throw new Error('could not find availale port');
     }
     process.env.PORT = port.toString();
-    const webpackMainConfig = (await import('./webpack.main.config')).default;
+    const webpackMainConfig = (await import('./webpack.main.dev.config')).default;
     const urls = prepareUrls('http', host, port);
     const useYarn = existsSync(paths.yarnLockFile);
     const appName = require(paths.packageJson).name;

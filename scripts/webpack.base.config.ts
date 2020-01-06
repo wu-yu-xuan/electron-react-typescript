@@ -1,6 +1,5 @@
 import paths from './paths';
 import { Configuration } from 'webpack';
-import webpack = require('webpack');
 
 export default {
   mode: process.env.NODE_ENV,
@@ -9,9 +8,8 @@ export default {
     filename: '[name].js'
   },
   node: {
-    // 否则 electron-devtools-installer 将不会正确工作
-    __dirname: true,
-    __filename: true
+    __dirname: false,
+    __filename: false
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js', '.json']
