@@ -10,7 +10,8 @@
     "jsx-equals-spacing": [true, "never"],
     "jsx-no-string-ref": true,
     "jsx-self-close": true,
-    "function-name": false
+    "function-name": false,
+    "import-name": false
   },
   "rulesDirectory": []
 }

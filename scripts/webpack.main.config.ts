@@ -1,15 +1,14 @@
-const path = require('path');
-const webpack = require('webpack');
-const merge = require('webpack-merge');
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+import webpack from 'webpack';
+import merge from 'webpack-merge';
+import webpackBaseConfig from './webpack.base.config';
+import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
+import paths from './paths';
 
-const baseConfig = require('./webpack.base.config');
-
-module.exports = merge.smart(baseConfig, {
+export default merge(webpackBaseConfig, {
   target: 'electron-main',
   entry: './src/main/index.ts',
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: paths.output,
     filename: 'index.js'
   },
   module: {
@@ -33,10 +32,16 @@ module.exports = merge.smart(baseConfig, {
     new ForkTsCheckerWebpackPlugin({
       reportFiles: ['src/main/**/*']
     }),
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(
-        process.env.NODE_ENV || 'development'
-      )
-    })
+    new webpack.DefinePlugin(getConstant())
   ]
 });
+
+function getConstant() {
+  return Object.entries(process.env).reduce(
+    (prev, [key, value]) => ({
+      ...prev,
+      [`process.env.${key}`]: JSON.stringify(value)
+    }),
+    {}
+  );
+}

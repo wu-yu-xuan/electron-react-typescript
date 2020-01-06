@@ -1,11 +1,11 @@
-'use strict';
+import paths from './paths';
+import { Configuration } from 'webpack';
+import webpack = require('webpack');
 
-const path = require('path');
-
-module.exports = {
-  mode: 'development',
+export default {
+  mode: process.env.NODE_ENV,
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: paths.output,
     filename: '[name].js'
   },
   node: {
@@ -18,4 +18,6 @@ module.exports = {
   },
   devtool: 'source-map',
   plugins: []
-};
+} as Configuration;
+
+

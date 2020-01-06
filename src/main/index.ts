@@ -1,6 +1,6 @@
 import { app, BrowserWindow } from 'electron';
-import * as path from 'path';
 import * as url from 'url';
+import paths from '../../scripts/paths';
 import electronDevtoolsInstaller, {
   REACT_DEVELOPER_TOOLS
 } from 'electron-devtools-installer';
@@ -19,14 +19,14 @@ const createWindow = async () => {
   }
 
   win = new BrowserWindow({ width: 800, height: 600 });
-
   if (process.env.NODE_ENV !== 'production') {
     process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = '1';
-    win.loadURL(`http://localhost:2003`);
+    // tslint:disable-next-line: prefer-template
+    win.loadURL('http://localhost:' + process.env.PORT);
   } else {
     win.loadURL(
       url.format({
-        pathname: path.join(__dirname, 'index.html'),
+        pathname: paths.appHtml,
         protocol: 'file:',
         slashes: true
       })

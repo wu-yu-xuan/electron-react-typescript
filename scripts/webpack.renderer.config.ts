@@ -1,12 +1,12 @@
-const webpack = require('webpack');
-const merge = require('webpack-merge');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
-const path = require('path');
+import webpack from 'webpack';
+import merge from 'webpack-merge';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
+import path from 'path';
 
-const baseConfig = require('./webpack.base.config');
+import baseConfig from './webpack.base.config';
 
-module.exports = merge.smart(baseConfig, {
+export default merge(baseConfig, {
   target: 'electron-renderer',
   entry: './src/renderer/index.tsx',
   output: {
@@ -56,8 +56,5 @@ module.exports = merge.smart(baseConfig, {
     new webpack.NamedModulesPlugin(),
     // for generate index.html
     new HtmlWebpackPlugin(),
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
-    })
   ]
 });
