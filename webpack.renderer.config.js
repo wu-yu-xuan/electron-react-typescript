@@ -27,7 +27,6 @@ module.exports = merge.smart(baseConfig, {
             '@babel/preset-typescript',
             '@babel/preset-react'
           ],
-          plugins: [['@babel/plugin-proposal-class-properties', { loose: true }]]
         }
       },
       {
@@ -55,6 +54,7 @@ module.exports = merge.smart(baseConfig, {
       reportFiles: ['src/renderer/**/*']
     }),
     new webpack.NamedModulesPlugin(),
+    // for generate index.html
     new HtmlWebpackPlugin(),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
