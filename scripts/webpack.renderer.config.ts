@@ -22,15 +22,38 @@ export default merge(baseConfig, {
           cacheDirectory: true,
           babelrc: false,
           presets: [
-            ['@babel/preset-env', { targets: { browsers: 'last 2 versions ' } }],
+            [
+              '@babel/preset-env',
+              { targets: { browsers: 'last 2 versions ' } }
+            ],
             '@babel/preset-typescript',
             '@babel/preset-react'
           ],
+          plugins: [
+            [
+              'import',
+              {
+                libraryName: 'antd',
+                libraryDirectory: 'es',
+                style: 'css'
+              }
+            ]
+          ]
         }
       },
       {
         test: /\.scss$/,
-        loaders: ['style-loader', 'css-loader', 'sass-loader']
+        loaders: [
+          'style-loader',
+          '@teamsupercell/typings-for-css-modules-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+            }
+          },
+          'sass-loader'
+        ]
       },
       {
         test: /\.css$/,
@@ -54,6 +77,6 @@ export default merge(baseConfig, {
     }),
     new webpack.NamedModulesPlugin(),
     // for generate index.html
-    new HtmlWebpackPlugin(),
+    new HtmlWebpackPlugin()
   ]
 });
